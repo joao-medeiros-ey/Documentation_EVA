@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en-US" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Endpoints &mdash; EVA Flask 1.0 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=4042127e"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Flask to Azure Functions Translation" href="traducao.html" />
+    <link rel="prev" title="Services" href="servicos.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EVA Flask 1.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Conteúdos:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introducao.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instalacao.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="estrutura_projeto.html">Project Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="servicos.html">Services</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Endpoints</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-endpoints.base">Base Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#endpoints.base.retrieval"><code class="docutils literal notranslate"><span class="pre">retrieval()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#endpoints.base.update_base"><code class="docutils literal notranslate"><span class="pre">update_base()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-endpoints.files">Files Endpoint</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#endpoints.files.upload_file"><code class="docutils literal notranslate"><span class="pre">upload_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-endpoints.chat">Chat Endpoint</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#endpoints.chat.chat"><code class="docutils literal notranslate"><span class="pre">chat()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-endpoints.skills">Skills Endpoint</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#endpoints.skills.skill"><code class="docutils literal notranslate"><span class="pre">skill()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-endpoints.documents">Documents Endpoint</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#endpoints.documents.list_documents"><code class="docutils literal notranslate"><span class="pre">list_documents()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="traducao.html">Flask to Azure Functions Translation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EVA Flask 1.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Endpoints</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/endpoints.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="endpoints">
+<h1>Endpoints<a class="headerlink" href="#endpoints" title="Link to this heading"></a></h1>
+<p>This section documents the services automatically using autodoc.</p>
+<section id="module-endpoints.base">
+<span id="base-endpoints"></span><h2>Base Endpoints<a class="headerlink" href="#module-endpoints.base" title="Link to this heading"></a></h2>
+<p>This module defines the routes for updating the knowledge base and
+performing searches (retrieval), using the Flask application framework.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="endpoints.base.retrieval">
+<span class="sig-prename descclassname"><span class="pre">endpoints.base.</span></span><span class="sig-name descname"><span class="pre">retrieval</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#endpoints.base.retrieval" title="Link to this definition"></a></dt>
+<dd><p>Endpoint for performing semantic retrieval.</p>
+<p>This endpoint receives a query via JSON and uses the BaseService to search for
+the k most similar chunks in the FAISS index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The retrieved context based on the provided query.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>JSON</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="endpoints.base.update_base">
+<span class="sig-prename descclassname"><span class="pre">endpoints.base.</span></span><span class="sig-name descname"><span class="pre">update_base</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#endpoints.base.update_base" title="Link to this definition"></a></dt>
+<dd><p>Endpoint for updating the knowledge base.</p>
+<p>This endpoint receives a file via upload, processes the content (including text extraction,
+chunking, and embedding generation), and updates the FAISS index, persisting the new content.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A success message and information about the processed file, or an error message in case of failure.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>JSON</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-endpoints.files">
+<span id="files-endpoint"></span><h2>Files Endpoint<a class="headerlink" href="#module-endpoints.files" title="Link to this heading"></a></h2>
+<p>This module defines the routes for uploading and processing files,
+allowing for the manipulation and conversion of different file formats.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="endpoints.files.upload_file">
+<span class="sig-prename descclassname"><span class="pre">endpoints.files.</span></span><span class="sig-name descname"><span class="pre">upload_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#endpoints.files.upload_file" title="Link to this definition"></a></dt>
+<dd><p>Endpoint for file upload.</p>
+<p>This endpoint receives a file via upload (in base64 format), processes the content, generates an
+explanation and embeddings, and stores the information in the global database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A message and information about the processed file.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>JSON</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-endpoints.chat">
+<span id="chat-endpoint"></span><h2>Chat Endpoint<a class="headerlink" href="#module-endpoints.chat" title="Link to this heading"></a></h2>
+<p>This module defines the endpoint for chat interaction, using the
+Large Language Model (LLM) and the context retrieval index, allowing
+communication and obtaining responses based on user queries.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="endpoints.chat.chat">
+<span class="sig-prename descclassname"><span class="pre">endpoints.chat.</span></span><span class="sig-name descname"><span class="pre">chat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#endpoints.chat.chat" title="Link to this definition"></a></dt>
+<dd><p>Endpoint for chat.</p>
+<p>This endpoint receives a user query, performs context retrieval using FAISS,
+and invokes the Large Language Model (LLM) to generate a response based on the context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The retrieved context and the response generated by the chat.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>JSON</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-endpoints.skills">
+<span id="skills-endpoint"></span><h2>Skills Endpoint<a class="headerlink" href="#module-endpoints.skills" title="Link to this heading"></a></h2>
+<p>This module defines the endpoint for executing specific skills,
+combining context retrieval, response generation, and user history
+management.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="endpoints.skills.skill">
+<span class="sig-prename descclassname"><span class="pre">endpoints.skills.</span></span><span class="sig-name descname"><span class="pre">skill</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#endpoints.skills.skill" title="Link to this definition"></a></dt>
+<dd><p>Endpoint for executing skills.</p>
+<p>This endpoint receives a query and parameters related to the desired skill, performs context
+retrieval, generates a specific response using the Large Language Model (LLM),
+and updates the user history, if applicable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The processed skill, the retrieved context, and the generated response.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>JSON</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-endpoints.documents">
+<span id="documents-endpoint"></span><h2>Documents Endpoint<a class="headerlink" href="#module-endpoints.documents" title="Link to this heading"></a></h2>
+<p>This module defines the route for listing the documents used in the
+knowledge base. It provides functionalities to access and manage the
+available documents, facilitating the querying and organization of
+information.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="endpoints.documents.list_documents">
+<span class="sig-prename descclassname"><span class="pre">endpoints.documents.</span></span><span class="sig-name descname"><span class="pre">list_documents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#endpoints.documents.list_documents" title="Link to this definition"></a></dt>
+<dd><p>Endpoint that returns the names (file_name) of the documents present in the metadata file.</p>
+<p>This endpoint extracts the unique names of the documents, considering that each file may have multiple chunks and, consequently, multiple metadata entries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A JSON object containing a list of document names and the total number of documents found.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Json</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="servicos.html" class="btn btn-neutral float-left" title="Services" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="traducao.html" class="btn btn-neutral float-right" title="Flask to Azure Functions Translation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Luis Fernando; Clara Selistre; Luane Testa; Jaqueline Amorim; João Medeiros.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
