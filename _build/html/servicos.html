@@ -1,0 +1,700 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en-US" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services &mdash; EVA Flask 1.0 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=4042127e"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Endpoints" href="endpoints.html" />
+    <link rel="prev" title="Project Structure" href="estrutura_projeto.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EVA Flask 1.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introducao.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instalacao.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="estrutura_projeto.html">Project Structure</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-services.base_service">Base Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#services.base_service.BaseService"><code class="docutils literal notranslate"><span class="pre">BaseService</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#services.base_service.BaseService.add_file"><code class="docutils literal notranslate"><span class="pre">BaseService.add_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.base_service.BaseService.load_index"><code class="docutils literal notranslate"><span class="pre">BaseService.load_index()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.base_service.BaseService.load_metadata"><code class="docutils literal notranslate"><span class="pre">BaseService.load_metadata()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.base_service.BaseService.retrieve"><code class="docutils literal notranslate"><span class="pre">BaseService.retrieve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.base_service.BaseService.save_index_and_metadata"><code class="docutils literal notranslate"><span class="pre">BaseService.save_index_and_metadata()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-services.blob_storage_service">Blob Storage Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#services.blob_storage_service.BlobStorageService"><code class="docutils literal notranslate"><span class="pre">BlobStorageService</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#services.blob_storage_service.BlobStorageService.blob_exists"><code class="docutils literal notranslate"><span class="pre">BlobStorageService.blob_exists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.blob_storage_service.BlobStorageService.download_blob_to_file"><code class="docutils literal notranslate"><span class="pre">BlobStorageService.download_blob_to_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.blob_storage_service.BlobStorageService.save_log_blob"><code class="docutils literal notranslate"><span class="pre">BlobStorageService.save_log_blob()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.blob_storage_service.BlobStorageService.upload_file_to_blob"><code class="docutils literal notranslate"><span class="pre">BlobStorageService.upload_file_to_blob()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-services.config">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#services.config.Config"><code class="docutils literal notranslate"><span class="pre">Config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-services.embedding_service">Embedding Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#services.embedding_service.EmbeddingService"><code class="docutils literal notranslate"><span class="pre">EmbeddingService</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#services.embedding_service.EmbeddingService.encode"><code class="docutils literal notranslate"><span class="pre">EmbeddingService.encode()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-services.container_file_processor.file_processor">File Processor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#services.container_file_processor.file_processor.FileProcessor"><code class="docutils literal notranslate"><span class="pre">FileProcessor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#services.container_file_processor.file_processor.FileProcessor.PDF_CONVERTER_ENDPOINT"><code class="docutils literal notranslate"><span class="pre">FileProcessor.PDF_CONVERTER_ENDPOINT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.container_file_processor.file_processor.FileProcessor.chunk_text"><code class="docutils literal notranslate"><span class="pre">FileProcessor.chunk_text()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.container_file_processor.file_processor.FileProcessor.delete_file"><code class="docutils literal notranslate"><span class="pre">FileProcessor.delete_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.container_file_processor.file_processor.FileProcessor.extract_text"><code class="docutils literal notranslate"><span class="pre">FileProcessor.extract_text()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.container_file_processor.file_processor.FileProcessor.map_dtype"><code class="docutils literal notranslate"><span class="pre">FileProcessor.map_dtype()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.container_file_processor.file_processor.FileProcessor.parsing_with_docling"><code class="docutils literal notranslate"><span class="pre">FileProcessor.parsing_with_docling()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.container_file_processor.file_processor.FileProcessor.process_pdf"><code class="docutils literal notranslate"><span class="pre">FileProcessor.process_pdf()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.container_file_processor.file_processor.FileProcessor.save_file"><code class="docutils literal notranslate"><span class="pre">FileProcessor.save_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.container_file_processor.file_processor.FileProcessor.xlsx_to_sql_insert"><code class="docutils literal notranslate"><span class="pre">FileProcessor.xlsx_to_sql_insert()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-services.llm_service">LLM Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#services.llm_service.LLMService"><code class="docutils literal notranslate"><span class="pre">LLMService</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#services.llm_service.LLMService.chat_response"><code class="docutils literal notranslate"><span class="pre">LLMService.chat_response()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.llm_service.LLMService.generate_explanation"><code class="docutils literal notranslate"><span class="pre">LLMService.generate_explanation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.llm_service.LLMService.generate_skill_response"><code class="docutils literal notranslate"><span class="pre">LLMService.generate_skill_response()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-services.user_history_service">User History Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#services.user_history_service.UserHistoryService"><code class="docutils literal notranslate"><span class="pre">UserHistoryService</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#services.user_history_service.UserHistoryService.get_blob_name"><code class="docutils literal notranslate"><span class="pre">UserHistoryService.get_blob_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.user_history_service.UserHistoryService.get_history"><code class="docutils literal notranslate"><span class="pre">UserHistoryService.get_history()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.user_history_service.UserHistoryService.load_history"><code class="docutils literal notranslate"><span class="pre">UserHistoryService.load_history()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.user_history_service.UserHistoryService.save_history"><code class="docutils literal notranslate"><span class="pre">UserHistoryService.save_history()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#services.user_history_service.UserHistoryService.update_history"><code class="docutils literal notranslate"><span class="pre">UserHistoryService.update_history()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="endpoints.html">Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traducao.html">Flask to Azure Functions Translation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EVA Flask 1.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Services</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/servicos.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="services">
+<h1>Services<a class="headerlink" href="#services" title="Link to this heading"></a></h1>
+<p>This section documents the services automatically using autodoc.</p>
+<section id="module-services.base_service">
+<span id="base-service"></span><h2>Base Service<a class="headerlink" href="#module-services.base_service" title="Link to this heading"></a></h2>
+<p>This module implements the base service for handling the FAISS index and associated metadata.
+It includes operations for loading and saving,
+both locally and in Blob Storage.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="services.base_service.BaseService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">services.base_service.</span></span><span class="sig-name descname"><span class="pre">BaseService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blob_storage_service</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.base_service.BaseService" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Responsible for managing loading, saving,
+and updating operations of a FAISS index and its associated
+metadata. Supports both local storage and Azure Blob Storage.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="services.base_service.BaseService.add_file">
+<span class="sig-name descname"><span class="pre">add_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.base_service.BaseService.add_file" title="Link to this definition"></a></dt>
+<dd><p>Adds a file to the FAISS index. Extracts the chunks and their respective embeddings from the file information and updates the metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_info</strong> (<em>dict</em>) – <p>Dictionary containing file information, including:</p>
+<ul class="simple">
+<li><p>file_id (str): Unique identifier for the file.</p></li>
+<li><p>file_name (str): Name of the file.</p></li>
+<li><p>file_extension (str): File extension.</p></li>
+<li><p>raw_text (str): Full extracted text.</p></li>
+<li><p>chunks (list, optional): List of text chunks.</p></li>
+<li><p>chunks_embeddings (list, optional): Embedding vectors of the chunks.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.base_service.BaseService.load_index">
+<span class="sig-name descname"><span class="pre">load_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#services.base_service.BaseService.load_index" title="Link to this definition"></a></dt>
+<dd><p>Loads the FAISS index from Blob Storage or local disk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The loaded FAISS index, or None if the index does not exist.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>index</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.base_service.BaseService.load_metadata">
+<span class="sig-name descname"><span class="pre">load_metadata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#services.base_service.BaseService.load_metadata" title="Link to this definition"></a></dt>
+<dd><p>Loads the metadata (list) from Blob Storage or local disk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of metadata, or an empty list if the file does not exist.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.base_service.BaseService.retrieve">
+<span class="sig-name descname"><span class="pre">retrieve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.base_service.BaseService.retrieve" title="Link to this definition"></a></dt>
+<dd><p>Retrieves the k most similar chunks for a given query.
+Generates the embedding of the query, normalizes it, and performs the search in the FAISS index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>str</em>) – The text of the query.</p></li>
+<li><p><strong>top_k</strong> (<em>int</em>) – The number of results to be returned.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The retrieved context with the most similar chunks.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.base_service.BaseService.save_index_and_metadata">
+<span class="sig-name descname"><span class="pre">save_index_and_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.base_service.BaseService.save_index_and_metadata" title="Link to this definition"></a></dt>
+<dd><p>Persists the FAISS index and the list of metadata locally and, if configured, in Blob Storage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> – The FAISS index to be saved.</p></li>
+<li><p><strong>metadata</strong> – List of metadata to be saved.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-services.blob_storage_service">
+<span id="blob-storage-service"></span><h2>Blob Storage Service<a class="headerlink" href="#module-services.blob_storage_service" title="Link to this heading"></a></h2>
+<p>Function: Implements the operations and integration with Azure Blob Storage, allowing for the download and upload of files.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="services.blob_storage_service.BlobStorageService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">services.blob_storage_service.</span></span><span class="sig-name descname"><span class="pre">BlobStorageService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection_string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">container_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">teste</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.blob_storage_service.BlobStorageService" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class provides methods to perform operations with Azure Blob Storage.</p>
+<p>The operations include:</p>
+<ul class="simple">
+<li><p>Downloading blobs</p></li>
+<li><p>Uploading blobs</p></li>
+<li><p>Checking for the existence of blobs</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="services.blob_storage_service.BlobStorageService.blob_exists">
+<span class="sig-name descname"><span class="pre">blob_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blob_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.blob_storage_service.BlobStorageService.blob_exists" title="Link to this definition"></a></dt>
+<dd><p>Checks for the existence of a blob with the specified name in the container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>blob_name</strong> (<em>str</em>) – The name of the blob to be checked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns True if the blob exists, and False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.blob_storage_service.BlobStorageService.download_blob_to_file">
+<span class="sig-name descname"><span class="pre">download_blob_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blob_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.blob_storage_service.BlobStorageService.download_blob_to_file" title="Link to this definition"></a></dt>
+<dd><p>Downloads a blob and saves it to a temporary file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>blob_name</strong> (<em>str</em>) – The name of the blob to be downloaded from Azure Blob Storage.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The path to the temporary file containing the downloaded blob content.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.blob_storage_service.BlobStorageService.save_log_blob">
+<span class="sig-name descname"><span class="pre">save_log_blob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'logs'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.blob_storage_service.BlobStorageService.save_log_blob" title="Link to this definition"></a></dt>
+<dd><p>Saves the log text as a .txt file in Azure Blob Storage.
+The file name will be generated using a timestamp combined with
+a UUID, ensuring uniqueness and avoiding collisions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.blob_storage_service.BlobStorageService.upload_file_to_blob">
+<span class="sig-name descname"><span class="pre">upload_file_to_blob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blob_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.blob_storage_service.BlobStorageService.upload_file_to_blob" title="Link to this definition"></a></dt>
+<dd><p>Uploads a file to Azure Blob Storage, overwriting the existing blob if there is already one with the same name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_path</strong> (<em>str</em>) – The path to the local file to be uploaded to Azure Blob Storage.</p></li>
+<li><p><strong>blob_name</strong> (<em>str</em>) – The name of the blob in storage where the file will be saved.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-services.config">
+<span id="configuration"></span><h2>Configuration<a class="headerlink" href="#module-services.config" title="Link to this heading"></a></h2>
+<p>This module is responsible for managing the application’s configuration,
+loading the necessary environment variables for the proper functioning
+of the system.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="services.config.Config">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">services.config.</span></span><span class="sig-name descname"><span class="pre">Config</span></span><a class="headerlink" href="#services.config.Config" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Application configuration class.</p>
+<p>This class is responsible for loading and exposing the necessary environment variables for use in the application.
+The variables include API keys, endpoints, and specific configurations for Blob Storage.</p>
+<p>The configured variables are:</p>
+<ul class="simple">
+<li><p>OPENAI_API_KEY: API key for accessing OpenAI.</p></li>
+<li><p>OPENAI_API_ENDPOINT: Endpoint for the OpenAI API.</p></li>
+<li><p>OPENAI_API_VERSION: Version of the OpenAI API.</p></li>
+<li><p>DIRECTORY_PATH: Working directory path.</p></li>
+<li><p>OPENAI_MODEL_NAME: Name of the OpenAI model to be used.</p></li>
+<li><p>TESTE: Flag to indicate test mode.</p></li>
+<li><p>MODEL_PATH: Path of the model to be used.</p></li>
+<li><p>OPENAI_API_KEY_EMBEDDING_MODEL: API key for the OpenAI embedding model.</p></li>
+<li><p>OPENAI_API_VERSION_EMBEDDING_MODEL: Version of the OpenAI embedding model API.</p></li>
+<li><p>OPENAI_API_ENDPOINT_EMBEDDING_MODEL: Endpoint for the OpenAI embedding model API.</p></li>
+<li><p>OPENAI_EMBEDDING_MODEL: Name of the OpenAI embedding model.</p></li>
+<li><p>BLOB_CONNECTION_STRING: Connection string for Azure Blob Storage.</p></li>
+<li><p>BLOB_CONTAINER_NAME: Name of the container in Azure Blob Storage.</p></li>
+<li><p>BLOB_INDEX_BLOB: Name of the index blob in Azure Blob Storage.</p></li>
+<li><p>BLOB_METADATA_BLOB: Name of the metadata blob in Azure Blob Storage.</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="module-services.embedding_service">
+<span id="embedding-service"></span><h2>Embedding Service<a class="headerlink" href="#module-services.embedding_service" title="Link to this heading"></a></h2>
+<p>This module provides functionalities for generating embeddings using
+OpenAI models. The operations include creating vector representations
+for texts, enabling tasks such as semantic search, classification,
+and similarity analysis.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="services.embedding_service.EmbeddingService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">services.embedding_service.</span></span><span class="sig-name descname"><span class="pre">EmbeddingService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.embedding_service.EmbeddingService" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Embedding Service.</p>
+<p>Generates embedding vectors for texts using an OpenAI client and model.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="services.embedding_service.EmbeddingService.encode">
+<span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.embedding_service.EmbeddingService.encode" title="Link to this definition"></a></dt>
+<dd><p>Generates embeddings for the provided text input(s).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>inputs</strong> (<em>str</em><em> or </em><em>list</em>) – A single text or a list of texts for which embeddings will be generated.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns a list of embedding vectors. If the input is a string, it returns a single corresponding vector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-services.container_file_processor.file_processor">
+<span id="file-processor"></span><h2>File Processor<a class="headerlink" href="#module-services.container_file_processor.file_processor" title="Link to this heading"></a></h2>
+<p>Este módulo é responsável pelo processamento de arquivos, incluindo a extração de texto,
+chunking, conversão de arquivos PDF e XLSX para SQL, além de outras operações de conversão.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="services.container_file_processor.file_processor.FileProcessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">services.container_file_processor.file_processor.</span></span><span class="sig-name descname"><span class="pre">FileProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.container_file_processor.file_processor.FileProcessor" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Esta classe é responsável por processar e converter arquivos, realizando a extração de texto,
+a divisão em chunks e a formatação do formato de saída.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="services.container_file_processor.file_processor.FileProcessor.PDF_CONVERTER_ENDPOINT">
+<span class="sig-name descname"><span class="pre">PDF_CONVERTER_ENDPOINT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://app-file-processor.lemonbeach-2f4bab7f.eastus2.azurecontainerapps.io'</span></em><a class="headerlink" href="#services.container_file_processor.file_processor.FileProcessor.PDF_CONVERTER_ENDPOINT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.container_file_processor.file_processor.FileProcessor.chunk_text">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">chunk_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overlap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.container_file_processor.file_processor.FileProcessor.chunk_text" title="Link to this definition"></a></dt>
+<dd><p>Divide o texto em chunks com tamanho e sobreposição definidos.</p>
+<p>Esta função realiza a divisão do texto em partes menores (chunks),
+com base nos parâmetros de tamanho e sobreposição especificados.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.container_file_processor.file_processor.FileProcessor.delete_file">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.container_file_processor.file_processor.FileProcessor.delete_file" title="Link to this definition"></a></dt>
+<dd><p>Deleta um arquivo do sistema de arquivos.</p>
+<p>Esta função remove o arquivo especificado do sistema de arquivos, garantindo que não
+haja mais referências a ele.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.container_file_processor.file_processor.FileProcessor.extract_text">
+<span class="sig-name descname"><span class="pre">extract_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.container_file_processor.file_processor.FileProcessor.extract_text" title="Link to this definition"></a></dt>
+<dd><p>Extrai o texto de um arquivo com base em sua extensão.</p>
+<p>Esta função identifica a extensão do arquivo fornecido e realiza a extração do texto
+de acordo com o formato específico do arquivo.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.container_file_processor.file_processor.FileProcessor.map_dtype">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">map_dtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.container_file_processor.file_processor.FileProcessor.map_dtype" title="Link to this definition"></a></dt>
+<dd><p>Mapeia os tipos de dados do Pandas para tipos SQL.</p>
+<p>Esta função realiza a correspondência entre os tipos de dados utilizados no Pandas e os tipos de dados
+compatíveis com SQL, facilitando a conversão e a inserção de dados em bancos de dados.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.container_file_processor.file_processor.FileProcessor.parsing_with_docling">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parsing_with_docling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.container_file_processor.file_processor.FileProcessor.parsing_with_docling" title="Link to this definition"></a></dt>
+<dd><p>Converte um documento utilizando a biblioteca DocumentConverter (docling).</p>
+<p>Esta função utiliza a biblioteca DocumentConverter para realizar a conversão de documentos
+entre diferentes formatos, facilitando a manipulação e o processamento de arquivos.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.container_file_processor.file_processor.FileProcessor.process_pdf">
+<span class="sig-name descname"><span class="pre">process_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'markdown'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.container_file_processor.file_processor.FileProcessor.process_pdf" title="Link to this definition"></a></dt>
+<dd><p>Processa um arquivo PDF utilizando um endpoint externo.</p>
+<p>Esta função realiza o processamento de um arquivo PDF, enviando-o para um endpoint externo para
+análise ou extração de informações.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.container_file_processor.file_processor.FileProcessor.save_file">
+<span class="sig-name descname"><span class="pre">save_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base64_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">original_filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.container_file_processor.file_processor.FileProcessor.save_file" title="Link to this definition"></a></dt>
+<dd><p>Salva um arquivo temporariamente a partir de uma string em base64.</p>
+<p>Esta função decodifica uma string em base64 e salva o conteúdo resultante como um arquivo temporário
+no sistema de arquivos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.container_file_processor.file_processor.FileProcessor.xlsx_to_sql_insert">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">xlsx_to_sql_insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.container_file_processor.file_processor.FileProcessor.xlsx_to_sql_insert" title="Link to this definition"></a></dt>
+<dd><p>Converte um arquivo XLSX em comandos SQL para criação e inserção de dados.</p>
+<p>Esta função realiza a conversão de um arquivo no formato XLSX, gerando os comandos SQL necessários
+para a criação de tabelas e a inserção de dados correspondentes.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-services.llm_service">
+<span id="llm-service"></span><h2>LLM Service<a class="headerlink" href="#module-services.llm_service" title="Link to this heading"></a></h2>
+<p>This module provides functionalities for integration with Large Language
+Models (LLM), including the generation of explanations, chat responses,
+and responses for specific skills.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="services.llm_service.LLMService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">services.llm_service.</span></span><span class="sig-name descname"><span class="pre">LLMService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'You</span> <span class="pre">are</span> <span class="pre">a</span> <span class="pre">helpful</span> <span class="pre">assistant.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_prompt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Provide</span> <span class="pre">a</span> <span class="pre">concise</span> <span class="pre">explanation.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.llm_service.LLMService" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>LLMService Class.</p>
+<p>This class interacts with the Large Language Model (LLM) to generate explanations
+and responses based on the provided prompts and context.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="services.llm_service.LLMService.chat_response">
+<span class="sig-name descname"><span class="pre">chat_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.85</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.llm_service.LLMService.chat_response" title="Link to this definition"></a></dt>
+<dd><p>Generates a chat response using the context retrieved from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_query</strong> (<em>str</em>) – The user’s question.</p></li>
+<li><p><strong>context</strong> (<em>str</em>) – The context retrieved from the FAISS index.</p></li>
+<li><p><strong>temperature</strong> (<em>float</em>) – The temperature parameter for the Large Language Model (LLM).</p></li>
+<li><p><strong>top_p</strong> (<em>float</em>) – The top_p parameter for the Large Language Model (LLM).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The response generated by the Large Language Model (LLM).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.llm_service.LLMService.generate_explanation">
+<span class="sig-name descname"><span class="pre">generate_explanation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_extension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.llm_service.LLMService.generate_explanation" title="Link to this definition"></a></dt>
+<dd><p>Generates a summarized explanation for the provided document.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>document_text</strong> (<em>str</em>) – The text of the document to be summarized.</p></li>
+<li><p><strong>file_name</strong> (<em>str</em>) – The name of the document file.</p></li>
+<li><p><strong>file_extension</strong> (<em>str</em>) – The file extension of the document.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The explanation generated by the Large Language Model (LLM).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.llm_service.LLMService.generate_skill_response">
+<span class="sig-name descname"><span class="pre">generate_skill_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skill</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retrieved_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.85</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_history</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.llm_service.LLMService.generate_skill_response" title="Link to this definition"></a></dt>
+<dd><p>Generates a specialized response for the specified skill, using the appropriate prompt and the user’s history, if available.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>skill</strong> (<em>str</em>) – The name of the skill.</p></li>
+<li><p><strong>query</strong> (<em>str</em>) – The user’s query.</p></li>
+<li><p><strong>retrieved_context</strong> (<em>str</em>) – The retrieved context.</p></li>
+<li><p><strong>temperature</strong> (<em>float</em>) – The temperature parameter for the Large Language Model (LLM).</p></li>
+<li><p><strong>top_p</strong> (<em>float</em>) – The top_p parameter for the Large Language Model (LLM).</p></li>
+<li><p><strong>user_history</strong> (<em>list</em><em>, </em><em>optional</em>) – The user’s interaction history.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The response generated for the skill.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-services.user_history_service">
+<span id="user-history-service"></span><h2>User History Service<a class="headerlink" href="#module-services.user_history_service" title="Link to this heading"></a></h2>
+<p>This module is responsible for managing the user’s interaction history.
+It allows loading, updating, and saving this data, both locally and
+via Azure Blob Storage. The functionalities include persisting the
+interaction history for analysis and personalizing the user experience.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="services.user_history_service.UserHistoryService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">services.user_history_service.</span></span><span class="sig-name descname"><span class="pre">UserHistoryService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blob_storage_service</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.user_history_service.UserHistoryService" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is responsible for managing users’ conversation history,
+including safeguarding and retrieving the data. It provides methods
+for storing interactions and accessing the history, facilitating
+analysis and personalizing the user experience.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="services.user_history_service.UserHistoryService.get_blob_name">
+<span class="sig-name descname"><span class="pre">get_blob_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.user_history_service.UserHistoryService.get_blob_name" title="Link to this definition"></a></dt>
+<dd><p>Generates the blob name based on the user’s identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user_id</strong> (<em>str</em>) – The unique identifier of the user for whom the blob name will be generated.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The blob file name corresponding to the user’s history.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.user_history_service.UserHistoryService.get_history">
+<span class="sig-name descname"><span class="pre">get_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_messages</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.user_history_service.UserHistoryService.get_history" title="Link to this definition"></a></dt>
+<dd><p>Retrieves the user’s recent history, returning the requested number of messages or all available messages if not specified.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_id</strong> (<em>str</em>) – The unique identifier of the user whose history will be retrieved.</p></li>
+<li><p><strong>max_messages</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum number of messages to be returned.
+If not specified, all available messages will be returned.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The user’s history, containing the retrieved messages as specified.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.user_history_service.UserHistoryService.load_history">
+<span class="sig-name descname"><span class="pre">load_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.user_history_service.UserHistoryService.load_history" title="Link to this definition"></a></dt>
+<dd><p>Loads the user’s history from Blob Storage or starts a new history if none exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user_id</strong> (<em>str</em>) – The unique identifier of the user whose history will be loaded.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Returns the user’s history, represented as a list.</dt><dd><p>If no existing history is found, a new history will be started.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.user_history_service.UserHistoryService.save_history">
+<span class="sig-name descname"><span class="pre">save_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">history</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.user_history_service.UserHistoryService.save_history" title="Link to this definition"></a></dt>
+<dd><p>Saves the user’s history in Blob Storage or locally, depending on the service configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_id</strong> (<em>str</em>) – The unique identifier of the user whose history will be saved.</p></li>
+<li><p><strong>history</strong> (<em>list</em>) – The interaction history to be stored.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="services.user_history_service.UserHistoryService.update_history">
+<span class="sig-name descname"><span class="pre">update_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_messages</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#services.user_history_service.UserHistoryService.update_history" title="Link to this definition"></a></dt>
+<dd><p>Updates the user’s history by adding a new message and maintaining a limit on entries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_id</strong> (<em>str</em>) – The unique identifier of the user whose history will be updated.</p></li>
+<li><p><strong>new_message</strong> (<em>dict</em>) – The new message or interaction to be added to the history.</p></li>
+<li><p><strong>max_messages</strong> (<em>int</em>) – The maximum number of messages to be retained in the history.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated history of the user, containing the most recent messages, respecting the defined limit.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="estrutura_projeto.html" class="btn btn-neutral float-left" title="Project Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="endpoints.html" class="btn btn-neutral float-right" title="Endpoints" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Luis Fernando; Clara Selistre; Luane Testa; Jaqueline Amorim; João Medeiros.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

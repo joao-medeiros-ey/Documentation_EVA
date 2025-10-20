@@ -1,0 +1,87 @@
+Módulos
+=======
+
+Esta seção documenta os módulos de forma automática utilizando autodoc.
+
+Serviços
+--------
+
+Base Service
+~~~~~~~~~~~~
+.. automodule:: services.base_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Blob Storage Service
+~~~~~~~~~~~~~~~~~~~~
+.. automodule:: services.blob_storage_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Configuração
+~~~~~~~~~~~~
+.. automodule:: services.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Embedding Service
+~~~~~~~~~~~~~~~~~
+.. automodule:: services.embedding_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+File Processor
+~~~~~~~~~~~~~~
+.. automodule:: services.file_processor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+LLM Service
+~~~~~~~~~~~
+.. automodule:: services.llm_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+User History Service
+~~~~~~~~~~~~~~~~~~~~
+.. automodule:: services.user_history_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Endpoints
+---------
+
+Base Endpoints
+~~~~~~~~~~~~~~
+.. automodule:: endpoints.base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Files Endpoints
+~~~~~~~~~~~~~~~
+.. automodule:: endpoints.files
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Chat Endpoints
+~~~~~~~~~~~~~~
+.. automodule:: endpoints.chat
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Skills Endpoints
+~~~~~~~~~~~~~~~~
+.. automodule:: endpoints.skills
+   :members:
+   :undoc-members:
+   :show-inheritance:
